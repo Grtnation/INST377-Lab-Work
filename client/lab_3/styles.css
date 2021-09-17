@@ -7,18 +7,11 @@
   .menu-container {
     color: #fff;
     background-color: #5995DA;  /* Blue */
-    padding: 20px 0;
+    padding:0;
   }
   
-  .menu {
-    border: 1px solid #fff;  /* For debugging */
-    width: 900px;
-  }
+  
 
-  .menu-container {
-    /* ... */
-    display: flex;
-  }
   .menu-container {
     /* ... */
     display: flex;
@@ -32,9 +25,13 @@
   }
 
   .links {
-    border: 1px solid #fff;  /* For debugging */
+   
     display: flex;
     justify-content: flex-end;
+  }
+
+  .signup {
+    margin-left: auto;
   }
   
   .login {
@@ -48,11 +45,11 @@
   }
   
   .header {
-    width: 900px;
+    width: 2000px;
     height: 300px;
     display: flex;
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
   }
 
 
@@ -126,12 +123,13 @@
     border-radius: 4px;
     padding: 10px 15px;
     margin: 0;
-    margin-bottom: 5px;
+    margin-bottom: 0;
   }
   .wrapper {
     display:flex;
     flex-direction: column;
     font-family: ‘Segoe UI’, Candara, ‘Bitstream Vera Sans’, ‘DejaVu Sans’, ‘Bitsream Vera Sans’, ‘Trebuchet MS’, Verdana, ‘Verdana Ref’, sans-serif;
+    margin: 0;
   }
 
   .footer {
@@ -157,13 +155,13 @@
   width: 300px;
   }
 
-  .signup {
-    margin-left: auto;
-  }
+  
 
   .page {
   display: flex;
   flex-wrap: wrap;
+  width: 960px;
+  margin: 0 auto;
 }
 
 .section {
@@ -203,3 +201,4 @@
 .feature-3 {
   background-color: #C8C6FA;
 }
+
