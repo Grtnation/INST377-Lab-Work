@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded' , () => {
 
     let birdLeft = 220
     let birdBottom = 100
-    let gravity = 3
+    let gravity = 2
     let isGameOver = false
     let gap = 430
 
@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded' , () => {
         bird.style.left = birdLeft + 'px'
     }
     let gameTimerId = setInterval(startGame, 20)
+
+    clearInterval(timerId)
 
     function control(e) {
         if (e.keyCode === 32) {
