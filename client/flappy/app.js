@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded' , () => {
         bird.style.bottom = birdBottom + 'px'
         console.log(birdBottom)
     }
-    document.addEventListener('keyup', control)
+    document.addEventListener('keyup', jump)
 
 
     function generateObstacle() {
