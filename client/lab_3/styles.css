@@ -25,7 +25,9 @@
   }
 
   .links {
-   
+    border: 1px solid #fff;
+    width: 700px;
+    margin-left: -130px;
     display: flex;
     justify-content: flex-end;
   }
@@ -35,6 +37,7 @@
   }
   
   .login {
+  
     margin-left: 20px;
   }
   .header-container {

@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,85 +7,33 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
 
-  <body>
-    <div class="wrapper">
-      <h1 class="title">Grant Tamrakar: Flexbox Demo</h1>
+<body>
+  <div class="carousel">
+    
+    <div class="carousel__item carousel__item--visible">
+      <img src="four.svg" />
     </div>
-    <div class="menu-container">
-      <div class="menu">
-        <div class="date">September 17, 2021</div>
-    <div class='links'>
-    <div class='signup'> <a href="data.html">Database Demos</a></div>      <!-- This is nested now -->
-    <div class='login'> <a href="index.html"> Main Page</a></div> 
+    <div class="carousel__item">
+      <img src="three.svg" />
     </div>
-
-      </div>
+    <div class="carousel__item">
+      <img src="one.svg" />
     </div>
-
-    <div class="header-container">
-      <div class="header">
-        <a
-          href="https://github.com/Grtnation/INST377-Lab-Work"
-          title="Github Link"
-          >Github</a>
-        <div class="logo"><img src="awesome-logo.svg"/></div>
-        <div class="social"><a href="https://github.com/Grtnation/INST377-Lab-Work" title=" Group Github Link">Group Github</a>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-
-
-
-  
-  
+</div>
+    <div class="carousel__actions">
+      <button id="carousel__button--prev" aria-label="Previous slide"><</button>
+      <button id="carousel__button--next" aria-label="Next slide">></button>
+    
+  </div>
   
 
-    <div class="carousel">
-      <div class="photo-grid">
-        <div class="carousel_item">
-          <img src="four.svg" />
-        </div>
-
-        <div class="carousel_item">
-          <img src="two.svg" />
-        </div>
-        <div class="carousel_item">
-          <img src="five.svg" />
-        </div>
-
-        <div class="carousel_item">
-          <img src="one.svg" />
-        </div>
-        <div class="carousel_item">
-          <img src="three.svg" />
-        </div>
-      </div>
-    </div>
 
   <div class="carousel_actions">
     <button id="carousel_button--prev">Previous slide</button>
-    <button id="carousel-button--next" aria-label="Next slide"></button>
+    <button id="carousel_button--next">Next slide</button>
   </div>
 
 
-
-
-
-
-    <div class="footer">
-      <div class="footer-item footer-one">
-        <p>Footer item 1</p>
-      </div>
-      <div class="footer-item footer-two">
-        <p>Footer item 2</p>
-      </div>
-
-      <div class="footer-item footer-three">
-        <p>Footer item 3</p>
-      </div>
-    </div>
+    <script src="script.js"></script>
+</body>
+</html>
