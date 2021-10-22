@@ -33,8 +33,8 @@ function toggleSpanVisibility(evt) {
 }
 
 async function filterFunction(event, data, list, mymap) {
-    list.innerHTML += <li class='resto-name'>${item.name}</li><br>;
-    const filteredList = data.filter((item, index) => {
+  list.innerHTML = '';
+  const filteredList = data.filter((item, index) => {
     const zipcode = event.target.value;
     return item.zip === zipcode;
   });
@@ -50,7 +50,7 @@ async function filterFunction(event, data, list, mymap) {
     L.marker(marker).addTo(mymap);
 
     //Todo frustrating undefined  point bug!!
-    list.innerHTML += `<li class='resto-name">${item.name}</li><br>`;
+    list.innerHTML += `<li class='resto-name'>${item.name}</li><br>`;
     //console.log(item.geocoded_columns_1).addTo(mymap);
     L.marker(item.geocoded_column_1).addTo(mymap);
   });
@@ -80,7 +80,7 @@ async function fetchrequest(url) {
   const request = await fetch(url);
   const arrayName = await request.json();
   console.log(arrayName);
-  return arrayName; 
+  return arrayName;
 }
 
 window.onload = mainThread;
