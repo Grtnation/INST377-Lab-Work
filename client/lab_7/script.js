@@ -75,7 +75,8 @@ async function mainThread() {
     console.log("within form submit", value);
     const fromLocalData = await fetch("/api");
     console.log(fromLocalData);
-}
+})}
+
 async function fetchrequest(url) {
   const request = await fetch(url);
   const arrayName = await request.json();
