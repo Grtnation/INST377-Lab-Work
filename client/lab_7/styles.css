@@ -1,0 +1,30 @@
+#mapid {
+  height: 500px;
+}
+
+.container {
+  background-color: cyan(190, 194, 255);
+  margin: 50px;
+  padding: 30px;
+  border-radius: 8px;
+  columns: auto;
+}
+
+h1,
+h3,
+form,
+ul,
+li {
+  text-align: center;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.result {
+  background-color: rgb(209, 236, 243);
+  border-radius: 8px;
+  padding: 30px;
+}

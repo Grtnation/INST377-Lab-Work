@@ -1,59 +1,86 @@
-async function windowActions() {
-  const endpoint =
-    "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json";
-  const request = await fetch(endpoint);
-  const arrayName = await request.json();
-
-  function FindMatches(wordToMatch, arrayName) {
-    return arrayName.filter((place) => {
-      const regex = new RegExp(wordToMatch, "gi");
-      return place.city.match(regex) || place.name.match(regex);
-    });
-  }
-
-  function displayMatches(event) {
-    const matchArray = FindMatches(event.target.value, arrayName);
-    const html = matchArray
-      .map((place) => {
-        const regex = new RegExp(event.target.value, "gi");
-        return `
-        <li>
-            <span class = "name"> ${place.name}</span><br/>
-            <span class = "category"> ${place.category}</span><br/>
-            <span class = "address"> ${place.address_line_1}</span><br/>
-            <span class = "city"> ${place.city}</span><br/>
-            <span class = "zip"> ${place.city}</span><br/>
-
-        </li>
-        `;
-      })
-      .join("");
-    suggestions.innerHTML = html;
-  }
-  const searchInput = document.querySelector(".search");
-  const suggestions = document.querySelector(".suggestions");
-  searchInput.addEventListener("change", displayMatches);
-  searchInput.addEventListener("keyup", (evt) => {
-    displayMatches(evt);
-  });
-}
-
-window.onload = windowActions;
-
-function mapInit() {
-  var mymap = L.map("mapid").setView([51.505, -0.09], 13);
-
-  L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
+function mapInit(ACCESS_TOKEN) {
+  const mymap = L.map("mapid").setView([38.83, -76.85], 12);
+  ACCESS_TOKEN =
+    "pk.eyJ1Ijoic2Ftc29uam9zZXBoMjUiLCJhIjoiY2t1b2Y0OGoxMDRvZjJva2IzYzVlemJ6dSJ9.jkhey_GJUGycclVWyny8JA";
+  L.tileLayer(
+    `https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}`,
     {
       attribution:
-        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        'Map data &copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/%22%3EMapbox</a>',
       maxZoom: 18,
       id: "mapbox/streets-v11",
       tileSize: 512,
       zoomOffset: -1,
-      accessToken: 'pk.eyJ1IjoiZ3J0bmF0aW9uIiwiYSI6ImNrdXNxcGZsdTVpeXcyb284Yzg0YWc1bzQifQ.8F8lAlw8y9lD7lT2MXduZQ',
+      accessToken:
+        "pk.eyJ1Ijoic2Ftc29uam9zZXBoMjUiLCJhIjoiY2t1b2Y0OGoxMDRvZjJva2IzYzVlemJ6dSJ9.jkhey_GJUGycclVWyny8JA",
     }
   ).addTo(mymap);
-  return mymap
+  return mymap;
 }
-mapInit()
+function toggleSpanVisibility(evt) {
+  //console.log("Click primary button", evt.target);
+  const button = evt.target;
+  const target = document.querySelector("#demo_box");
+  console.log(target.classList);
+  if (target.classList.value.includes("visible")) {
+    console.log("found item");
+    target.classList.remove("visible");
+    target.classList.add("hidden");
+  } else {
+    target.classList.remove("hidden");
+    target.classList.remove("visible");
+  }
+}
+
+async function filterFunction(event, data, list, mymap) {
+    list.innerHTML += <li class='resto-name'>${item.name}</li><br>;
+    const filteredList = data.filter((item, index) => {
+    const zipcode = event.target.value;
+    return item.zip === zipcode;
+  });
+  console.table(filteredList);
+
+  const limitedList = filteredList.slice(0, 5);
+
+  limitedList.forEach((item, index) => {
+    const point = item.geocoded_column_1;
+    const latlong = point.coordinates;
+    const marker = latlong.reserve();
+
+    L.marker(marker).addTo(mymap);
+
+    //Todo frustrating undefined  point bug!!
+    list.innerHTML += `<li class='resto-name">${item.name}</li><br>`;
+    //console.log(item.geocoded_columns_1).addTo(mymap);
+    L.marker(item.geocoded_column_1).addTo(mymap);
+  });
+}
+
+async function mainThread() {
+  console.log("main script");
+  const url = "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json";
+  const inputBox = document.querySelector("#zipcode");
+  const visibleListOffFilteredItems = document.querySelector('.suggestions');
+  const ACCESS_TOKEN =
+    "pk.eyJ1Ijoic2Ftc29uam9zZXBoMjUiLCJhIjoiY2t1b2Y0OGoxMDRvZjJva2IzYzVlemJ6dSJ9.jkhey_GJUGycclVWyny8JA";
+  const mymap = mapInit(ACCESS_TOKEN);
+  const data = await fetchrequest(url);
+  inputBox.addEventListener("input", (event) => {
+    filterFunction(event, data, visibleListOffFilteredItems, mymap);
+  });
+  const form = document.querySelector("#zip-from");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const { value } = inputBox;
+    console.log("within form submit", value);
+    const fromLocalData = await fetch("/api");
+    console.log(fromLocalData);
+}
+async function fetchrequest(url) {
+  const request = await fetch(url);
+  const arrayName = await request.json();
+  console.log(arrayName);
+  return arrayName; 
+}
+
+window.onload = mainThread;
