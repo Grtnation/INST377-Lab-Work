@@ -46,13 +46,18 @@ async function filterFunction(event, data, list, mymap) {
     const point = item.geocoded_column_1;
     const latlong = point.coordinates;
     const marker = latlong.reverse();
+    if (limitedList.length > 0){
+        mymap.setView([limitedList[0].geocoded_column_1.coordinates[0],limitedList[0].geocoded_column_1.coordinates[1]], 10)
+
+    }
+
 
     L.marker(marker).addTo(mymap);
 
     //Todo frustrating undefined  point bug!!
     list.innerHTML += `<li class='resto-name'>${item.name}</li><br>`;
+    
     //console.log(item.geocoded_columns_1).addTo(mymap);
-    L.marker(item.geocoded_column_1).addTo(mymap);
   });
 }
 
