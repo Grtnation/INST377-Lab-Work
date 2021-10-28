@@ -68,7 +68,7 @@ async function mainThread() {
   inputBox.addEventListener("input", (event) => {
     filterFunction(event, data, visibleListOffFilteredItems, mymap);
   });
-  const form = document.querySelector("#zip-from");
+  const form = document.querySelector("#zip-form");
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const { value } = inputBox;
