@@ -45,7 +45,7 @@ async function filterFunction(event, data, list, mymap) {
   limitedList.forEach((item, index) => {
     const point = item.geocoded_column_1;
     const latlong = point.coordinates;
-    const marker = latlong.reserve();
+    const marker = latlong.reverse();
 
     L.marker(marker).addTo(mymap);
 
@@ -57,7 +57,7 @@ async function filterFunction(event, data, list, mymap) {
 }
 
 async function mainThread() {
-  console.log("main script");
+  console.log('main script');
   const url = "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json";
   const inputBox = document.querySelector("#zipcode");
   const visibleListOffFilteredItems = document.querySelector('.suggestions');
